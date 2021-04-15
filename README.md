@@ -1,6 +1,6 @@
 # Social Media App Frontend
 
-This is a Social Media App created using MERN Stack which provides the facility to post images to the forum online.
+This is a Social Media App created using MERN Stack which provides the facility to post images, text posts to the forum online.
 
 Users can create account, add a profile picture, create posts, edit posts etc.
 
