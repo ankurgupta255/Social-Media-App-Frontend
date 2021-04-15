@@ -16,13 +16,13 @@ class EditProfile extends Component {
       error: "",
       fileSize: 0,
       loading: false,
-      about: ""
+      about: "",
     };
   }
 
-  init = userId => {
+  init = (userId) => {
     const token = isAuthenticated().token;
-    read(userId, token).then(data => {
+    read(userId, token).then((data) => {
       if (data.error) {
         this.setState({ redirectToProfile: true });
       } else {
@@ -31,7 +31,7 @@ class EditProfile extends Component {
           name: data.name,
           email: data.email,
           error: "",
-          about: data.about
+          about: data.about,
         });
       }
     });
@@ -48,7 +48,7 @@ class EditProfile extends Component {
     if (fileSize > 1000000) {
       this.setState({
         error: "File size should be less than 100kb",
-        loading: false
+        loading: false,
       });
       return false;
     }
@@ -60,21 +60,21 @@ class EditProfile extends Component {
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       this.setState({
         error: "A valid Email is required",
-        loading: false
+        loading: false,
       });
       return false;
     }
     if (password.length >= 1 && password.length <= 5) {
       this.setState({
         error: "Password must be at least 6 characters long",
-        loading: false
+        loading: false,
       });
       return false;
     }
     return true;
   };
 
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({ error: "" });
     const value = name === "photo" ? event.target.files[0] : event.target.value;
 
@@ -83,7 +83,7 @@ class EditProfile extends Component {
     this.setState({ [name]: value, fileSize });
   };
 
-  clickSubmit = event => {
+  clickSubmit = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
 
@@ -91,17 +91,17 @@ class EditProfile extends Component {
       const userId = this.props.match.params.userId;
       const token = isAuthenticated().token;
 
-      update(userId, token, this.userData).then(data => {
+      update(userId, token, this.userData).then((data) => {
         if (data.error) {
           this.setState({ error: data.error });
         } else if (isAuthenticated().user.role === "admin") {
           this.setState({
-            redirectToProfile: true
+            redirectToProfile: true,
           });
         } else {
           updateUser(data, () => {
             this.setState({
-              redirectToProfile: true
+              redirectToProfile: true,
             });
           });
         }
@@ -173,7 +173,7 @@ class EditProfile extends Component {
       redirectToProfile,
       error,
       loading,
-      about
+      about,
     } = this.state;
 
     if (redirectToProfile) {
@@ -208,7 +208,7 @@ class EditProfile extends Component {
           style={{ height: "200px", width: "auto" }}
           className="img-thumbnail"
           src={photoUrl}
-          onError={i => (i.target.src = `${DefaultProfile}`)}
+          onError={(i) => (i.target.src = `${DefaultProfile}`)}
           alt={name}
         />
 

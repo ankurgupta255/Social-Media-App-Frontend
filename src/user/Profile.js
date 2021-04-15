@@ -16,25 +16,25 @@ class Profile extends Component {
       redirectToSignin: false,
       following: false,
       error: "",
-      posts: []
+      posts: [],
     };
   }
 
   // check follow
-  checkFollow = user => {
+  checkFollow = (user) => {
     const jwt = isAuthenticated();
-    const match = user.followers.find(follower => {
+    const match = user.followers.find((follower) => {
       // one id has many other ids (followers) and vice versa
       return follower._id === jwt.user._id;
     });
     return match;
   };
 
-  clickFollowButton = callApi => {
+  clickFollowButton = (callApi) => {
     const userId = isAuthenticated().user._id;
     const token = isAuthenticated().token;
 
-    callApi(userId, token, this.state.user._id).then(data => {
+    callApi(userId, token, this.state.user._id).then((data) => {
       if (data.error) {
         this.setState({ error: data.error });
       } else {
@@ -43,9 +43,9 @@ class Profile extends Component {
     });
   };
 
-  init = userId => {
+  init = (userId) => {
     const token = isAuthenticated().token;
-    read(userId, token).then(data => {
+    read(userId, token).then((data) => {
       if (data.error) {
         this.setState({ redirectToSignin: true });
       } else {
@@ -56,9 +56,9 @@ class Profile extends Component {
     });
   };
 
-  loadPosts = userId => {
+  loadPosts = (userId) => {
     const token = isAuthenticated().token;
-    listByUser(userId, token).then(data => {
+    listByUser(userId, token).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
@@ -96,7 +96,7 @@ class Profile extends Component {
               style={{ height: "200px", width: "auto" }}
               className="img-thumbnail"
               src={photoUrl}
-              onError={i => (i.target.src = `${DefaultProfile}`)}
+              onError={(i) => (i.target.src = `${DefaultProfile}`)}
               alt={user.name}
             />
           </div>
