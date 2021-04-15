@@ -5,11 +5,11 @@ This is a Social Media App created using MERN Stack which provides the facility 
 Users can create account, add a profile picture, create posts, edit posts etc.
 
 The Various Technologies used in the application are:
-React.js
-Node.js
-Express.js
-MongoDB
-Heroku
+- React.js
+- Node.js
+- Express.js
+- MongoDB
+- Heroku
 
 The App is deployed at:
 
